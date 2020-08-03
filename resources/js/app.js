@@ -13,13 +13,27 @@ const ctx = document.getElementById("axes_line_chart").getContext("2d");
 let obj={}
 	
 // GET USERS COUNTRY CODE
-let country_code = geoplugin_countryCode();
-let user_country;
-country_list.forEach( country => {
-	if( country.code == country_code ){
-		user_country = country.name;
-	}
-});
+// GET USERS COUNTRY CODE
+
+let user_country = "";
+getCountry();
+function getCountry() {
+	fetch(`https://api.ipdata.co/?api-key=test`, {
+		"method": "GET",
+	})
+	.then( response => {
+		return response.json();
+	})
+	.then( data => {
+		user_country = data.country_name;
+	})
+	.then( () => {
+		fetchData(user_country);	
+	})
+	.catch( error => {
+		alert(error);
+	})
+}
 
 /* ---------------------------------------------- */
 /*                API URL AND KEY                 */
