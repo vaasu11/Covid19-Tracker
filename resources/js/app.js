@@ -50,7 +50,7 @@ function fetchData(user_country){
 	})
 	.then( data => {
 		obj=data;
-		console.log(data);
+		//console.log(data);
 		
 	})
 	.then( () => {
